@@ -1,0 +1,26 @@
+
+<html><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head>
+<body data-gr-c-s-loaded="true" style="margin: 0px;">
+    {% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul>
+               {% for message in messages %}
+               <li>{{ message }}</li>
+               {% endfor %}
+            </ul>
+         {% endif %}
+    {% endwith %}
+
+{% if session['logged_in']%}
+         <h3>Hospital App User Information</h3>
+         <b>Name</b>: {{row.iat[0,0]}}</br>
+         <b>Age:</b> {{row.iat[0,1]}}</br>
+         <b>Phone Number:</b> {{row.iat[0,2]}}</br>
+         <b>Has COVID:</b> {{row.iat[0,3]}}</br>
+         <b>Security Role Level:</b> {{row.iat[0,4]}}</br>
+         <b>Login Password:</b> {{row.iat[0,5]}}
+
+{% endif %}
+
+</body></html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+  </head>
+  <body data-gr-c-s-loaded="true" style="margin: 0px">
+    {% with messages = get_flashed_messages() %} {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %} {% if session['logged_in'] %}
+    <h1>Welcome {{name}}</h1>
+
+    <h2><a href="/showUser">Show Hospital App User</a></h2>
+    <h2><a href="/testResults">List Test Results</a></h2>
+    {% if (session['Level'] >= 2) %}
+    <h2><a href="/enternew">Add new Hospital App User</a></h2>
+    <h2><a href="/enterTestResult">Send a Test Result</a></h2>
+    {% if (session['Level'] == 3) %}
+    <h2><a href="/list">List Hospital App Users</a></h2>
+    {% endif %} {% endif %} {% if session['logged_in'] and session['Level'] >= 3
+    %}
+    <h2>
+      <a href="/sendEncryptedMessage"
+        >Send Authenticated Test Result Update using HMAC with Encryption</a
+      >
+    </h2>
+    {% endif %}
+
+    <h2><a href="/logout">Log out</a></h2>
+    {% endif %}
+  </body>
+</html>
